@@ -4,11 +4,18 @@
 # exit script if error or try to use undeclared variable
 set -o errexit -o nounset
 
+FILENAME=.prettierrc
+
+if [ -f $FILENAME ]; then
+  echo "You already have a $FILENAME file"
+  exit 0
+fi
+
 # create prettier file
-touch .prettierrc
+touch $FILENAME
 
 # insert most used settings into newly created .prettierrc file
-cat >> .prettierrc <<'EOF'
+cat >> $FILENAME <<'EOF'
 {
   "arrowParens": "always",
   "bracketSpacing": false,
