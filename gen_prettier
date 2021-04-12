@@ -1,0 +1,24 @@
+#!/bin/bash
+# Create generic prettier config file
+
+# exit script if error or try to use undeclared variable
+set -o errexit -o nounset
+
+# create prettier file
+touch .prettierrc
+
+# insert most used settings into newly created .prettierrc file
+cat >> .prettierrc <<'EOF'
+{
+  "arrowParens": "always",
+  "bracketSpacing": false,
+  "printWidth": 80,
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "useTabs": false,
+}
+EOF
+
+exit 0
