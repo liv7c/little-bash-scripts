@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+languages=$(echo "typescript javascript sass bash golang rust" | tr " " "\n")
+core_utils=$(echo "grep read awk find xargs sed tr echo" | tr " " "\n")
+selected=$(echo -e "$languages\n$core_utils" | fzf)
+
+read -rp "Your search: " query
+
+if echo "$languages" | grep -qs "$selected"; then
+  tmux split-window -h bash -c "curl -s cht.sh/$selected/$(echo "$query" | tr " " "+") | less -sR"
+else
+  tmux split-window -h bash -c "curl -s cht.sh/$selected~$query | less -sR"
+fi
+
