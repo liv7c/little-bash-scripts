@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-folders_for_search="$HOME/projects $HOME/courses $HOME/Documents/docs"
-session=$(find $folders_for_search -mindepth 1 -maxdepth 2 -type d \( ! -iname "node_modules" \) -not -path "*/.git*" | fzf)
+folders_for_search=("$HOME/projects" "$HOME/courses" "$HOME/Documents/docs")
+session=$(find "${folders_for_search[@]}" -mindepth 1 -maxdepth 2 -type d \( ! -iname "node_modules" \) -not -path "*/.git*" | fzf)
 session_name=$(basename "$session" | tr . _)
 
 # create new detached tmux session if no session with same name already created
